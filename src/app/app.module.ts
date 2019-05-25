@@ -21,7 +21,6 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { MedidaComponent } from './medida/medida.component';
 
 
 @NgModule({
@@ -39,8 +38,6 @@ import { MedidaComponent } from './medida/medida.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    MedidaComponent,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

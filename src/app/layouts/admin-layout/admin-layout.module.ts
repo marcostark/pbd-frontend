@@ -11,7 +11,9 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+
 import { MarcaComponent } from '../../marca/marca.component';
+import { MedidaComponent } from '../../medida/medida.component';
 
 import {
   MatButtonModule,
@@ -21,6 +23,8 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { MarcaModule } from 'app/marca/marca.module';
+import { MedidaModule } from 'app/medida/medida.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -32,6 +36,8 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MarcaModule,
+    MedidaModule,
   ],
   declarations: [
     DashboardComponent,
@@ -41,8 +47,8 @@ import {
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    UpgradeComponent,
-    MarcaComponent,
+    UpgradeComponent,    
+
   ]
 })
 
