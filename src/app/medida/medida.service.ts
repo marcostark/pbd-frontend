@@ -10,14 +10,14 @@ export class MedidaService {
 
   constructor(
     @Inject('MEDIDA_ENDPOINT') private medidaEndpoint: string,
-    private htttpClient: HttpClient
+    private httpClient: HttpClient
   ) { }
 
   getMedidas(): Observable<MedidaModel[]> {
-    return this.htttpClient.get<MedidaModel[]>(this.medidaEndpoint);
+    return this.httpClient.get<MedidaModel[]>(this.medidaEndpoint);
   }
 
   getMedida(id: number): Observable<MedidaModel> {
-    return this.htttpClient.get<MedidaModel>(this.medidaEndpoint + id + '/');
+    return this.httpClient.get<MedidaModel>(this.medidaEndpoint + id + '/');
   }
 }
