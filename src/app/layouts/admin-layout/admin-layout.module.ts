@@ -25,6 +25,8 @@ import {
 } from '@angular/material';
 import { MarcaModule } from 'app/marca/marca.module';
 import { MedidaModule } from 'app/medida/medida.module';
+import { TipoEstabelecimentoComponent } from 'app/tipo-estabelecimento/tipo-estabelecimento.component';
+import { TipoEstabelecimentoModule } from 'app/tipo-estabelecimento/tipo-estabelecimento.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { MedidaModule } from 'app/medida/medida.module';
     MatTooltipModule,
     MarcaModule,
     MedidaModule,
+    TipoEstabelecimentoModule,
   ],
   declarations: [
     DashboardComponent,
