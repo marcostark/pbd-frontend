@@ -28,6 +28,7 @@ import { MedidaModule } from 'app/medida/medida.module';
 import { TipoEstabelecimentoComponent } from 'app/tipo-estabelecimento/tipo-estabelecimento.component';
 import { TipoEstabelecimentoModule } from 'app/tipo-estabelecimento/tipo-estabelecimento.module';
 import { TipoProdutoModule } from 'app/tipo-produto/tipo-produto.module';
+import { LocalModule } from 'app/local/local.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -43,6 +44,7 @@ import { TipoProdutoModule } from 'app/tipo-produto/tipo-produto.module';
     MedidaModule,
     TipoEstabelecimentoModule,
     TipoProdutoModule,
+    LocalModule,
   ],
   declarations: [
     DashboardComponent,

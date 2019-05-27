@@ -14,6 +14,11 @@ export const ROUTES: RouteInfo[] = [
     { path: '/medida', title: 'Medida',  icon:'bubble_chart', class: '' },
     { path: '/tipo-estabelecimento', title: 'Tipo de Estabelecimento',  icon:'shopping_cart', class: '' },
     { path: '/tipo-produto', title: 'Tipo de Produto',  icon:'local_mall', class: '' },
+
+    { path: '/local', title: 'Local',  icon:'local_mall', class: '' },
+    // { path: '/item', title: 'Item',  icon:'local_mall', class: '' },
+    // { path: '/produto', title: 'Produto',  icon:'local_mall', class: '' },
+    // { path: '/estabelecimentos', title: 'Estabelecimento',  icon:'local_mall', class: '' },
     // { path: '', title: 'Estabelecimento',  icon:'store_mall_directory', class: '' },
 
     // { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
