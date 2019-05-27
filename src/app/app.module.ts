@@ -14,9 +14,6 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EstabelecimentoComponent } from './estabelecimento/estabelecimento.component';
-import { ItemComponent } from './item/item.component';
-import { ProdutoComponent } from './produto/produto.component';
 
 @NgModule({
   imports: [
@@ -32,10 +29,7 @@ import { ProdutoComponent } from './produto/produto.component';
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-    EstabelecimentoComponent,
-    ItemComponent,
-    ProdutoComponent,    
+    AdminLayoutComponent,    
   ],
   providers: [
     CCBST_INJECTABLES,

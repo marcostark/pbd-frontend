@@ -12,9 +12,6 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
-import { MarcaComponent } from '../../marca/marca.component';
-import { MedidaComponent } from '../../medida/medida.component';
-
 import {
   MatButtonModule,
   MatInputModule,
@@ -25,10 +22,12 @@ import {
 } from '@angular/material';
 import { MarcaModule } from 'app/marca/marca.module';
 import { MedidaModule } from 'app/medida/medida.module';
-import { TipoEstabelecimentoComponent } from 'app/tipo-estabelecimento/tipo-estabelecimento.component';
 import { TipoEstabelecimentoModule } from 'app/tipo-estabelecimento/tipo-estabelecimento.module';
 import { TipoProdutoModule } from 'app/tipo-produto/tipo-produto.module';
 import { LocalModule } from 'app/local/local.module';
+import { EstabelecimentoModule } from 'app/estabelecimento/estabelecimento.module';
+import { ProdutoModule } from 'app/produto/produto.module';
+import { ItemModule } from 'app/item/item.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,6 +44,9 @@ import { LocalModule } from 'app/local/local.module';
     TipoEstabelecimentoModule,
     TipoProdutoModule,
     LocalModule,
+    EstabelecimentoModule,
+    ItemModule,
+    ProdutoModule,   
   ],
   declarations: [
     DashboardComponent,

@@ -16,10 +16,10 @@ export const ROUTES: RouteInfo[] = [
     { path: '/tipo-produto', title: 'Tipo de Produto',  icon:'local_mall', class: '' },
 
     { path: '/local', title: 'Local',  icon:'local_mall', class: '' },
-    // { path: '/item', title: 'Item',  icon:'local_mall', class: '' },
-    // { path: '/produto', title: 'Produto',  icon:'local_mall', class: '' },
-    // { path: '/estabelecimentos', title: 'Estabelecimento',  icon:'local_mall', class: '' },
-    // { path: '', title: 'Estabelecimento',  icon:'store_mall_directory', class: '' },
+    { path: '/item', title: 'Item',  icon:'local_mall', class: '' },
+    { path: '/produto', title: 'Produto',  icon:'local_mall', class: '' },
+    { path: '/estabelecimento', title: 'Estabelecimento',  icon:'local_mall', class: '' },
+    
 
     // { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
     // { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
