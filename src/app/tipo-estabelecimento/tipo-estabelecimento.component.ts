@@ -30,4 +30,12 @@ export class TipoEstabelecimentoComponent implements OnInit {
     )
   }
 
+  editarTipo(tiposEstabelecimento){
+
+  }
+
+  openConfirmationDialog(tiposEstabelecimento){
+
+  }
+
 }

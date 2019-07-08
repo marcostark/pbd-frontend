@@ -10,14 +10,23 @@ export class MarcaService {
 
   constructor(
     @Inject('MARCA_ENDPOINT') private marcaEndpoint: string,
-    private htttpClient: HttpClient
+    private httpClient: HttpClient
   ) { }
 
   getMarcas(): Observable<MarcaModel[]> {
-    return this.htttpClient.get<MarcaModel[]>(this.marcaEndpoint);
+    return this.httpClient.get<MarcaModel[]>(this.marcaEndpoint);
   }
 
   getMarca(id: number): Observable<MarcaModel> {
-    return this.htttpClient.get<MarcaModel>(this.marcaEndpoint + id + '/');
+    return this.httpClient.get<MarcaModel>(this.marcaEndpoint + id + '/');
+  }
+
+  adicionarMarca(marca: any):  Observable<MarcaModel> {    
+    return this.httpClient.post<MarcaModel>(this.marcaEndpoint, marca);    
+  }
+
+  // TODO resolver problema de CORS
+  removerMarca(id: number): Observable<any> {
+    return this.httpClient.delete(this.marcaEndpoint + `${id}`);
   }
 }
