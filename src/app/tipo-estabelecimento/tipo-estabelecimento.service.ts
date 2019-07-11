@@ -7,18 +7,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TipoEstabelecimentoService {
-
   constructor(
     @Inject('TIPO_ESTABELECIMENTO_ENDPOINT') private tipoEndpoint: string,
-    private htttpClient: HttpClient
+    private httpClient: HttpClient
   ) { }
 
   getTipos(): Observable<TipoEstabelecimentoModel[]> {
-    return this.htttpClient.get<TipoEstabelecimentoModel[]>(this.tipoEndpoint);
+    return this.httpClient.get<TipoEstabelecimentoModel[]>(this.tipoEndpoint);
   }
 
   getTipo(id: number): Observable<TipoEstabelecimentoModel> {
-    return this.htttpClient.get<TipoEstabelecimentoModel>(this.tipoEndpoint + id + '/');
+    return this.httpClient.get<TipoEstabelecimentoModel>(this.tipoEndpoint + id + '/');
   }
+   
+  adicionarTipo(_tipoEstabelecimento: TipoEstabelecimentoModel): Observable<TipoEstabelecimentoModel> {
+    return this.httpClient.post<TipoEstabelecimentoModel>(this.tipoEndpoint, _tipoEstabelecimento);
+  }
+
+  // TODO resolver problema de CORS
+  removerTipo(id: number): Observable<any> {
+    return this.httpClient.delete(this.tipoEndpoint + `${id}`);
+  }
+
 
 }

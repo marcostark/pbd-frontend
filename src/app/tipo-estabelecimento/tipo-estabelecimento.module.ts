@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { TipoEstabelecimentoComponent } from './tipo-estabelecimento.component';
+import { TipoEstabelecimentoComponent, DialogOverviewExampleDialog } from './tipo-estabelecimento.component';
 import { TipoEstabelecimentoRoutingModule } from './tipo-estabelecimento-routing.module';
 import {
   MatButtonModule,
   MatInputModule,
   MatRippleModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatTooltipModule,
   MatSelectModule} from '@angular/material';
@@ -14,16 +15,22 @@ import {
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,    
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-    FormsModule,
     MatRippleModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatTooltipModule,
     MatSelectModule,
     TipoEstabelecimentoRoutingModule,
   ],
-  declarations: [TipoEstabelecimentoComponent]
+  entryComponents:[
+    DialogOverviewExampleDialog
+  ],
+  declarations: [
+    TipoEstabelecimentoComponent,
+    DialogOverviewExampleDialog]
 })
 export class TipoEstabelecimentoModule { }
