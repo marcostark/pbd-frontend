@@ -1,5 +1,58 @@
 <div class="main-content">
   <div class="container-fluid">
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Tipos de Produtos</h4>
+                            <p class="card-category">Cadastre a Tipos de Produtos</p>
+                        </div>
+                    
+                <div class="card-body">
+                        <form [formGroup]="medidaForm" novalidate>
+                        <div class="row">
+                           <div class="col-md-2">
+                            
+                            <div class="dropdown">
+                                    <button href="#" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true" >
+                                        Regular
+                                        <b class="caret"></b>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </div>
+                            </div> 
+    
+                            <div class="col-md-10">
+                                <mat-form-field 
+                                    class="example-full-width">
+                                    <input 
+                                        formControlName="valor"
+                                        required minlength="2"
+                                        matInput 
+                                        placeholder="Nome" 
+                                        type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <button 
+                            mat-raised-button 
+                            type="submit" 
+                            (click)="adicionarMedida(medidaForm.value)"
+                            class="btn btn-danger pull-right">Cadastrar</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>  
       <div class="row">
           <div class="col-md-12">
               <div class="card">
@@ -35,8 +88,19 @@
                                     <td>
                                       {{ tipoProduto.medida.unidade }}
                                   </td>                                   
-                                    <td>
-                                    </td>
+                                  <td class="td-actions text-left">
+                                    <button mat-raised-button type="button" (click)="editarTipoProduto(tipoProduto)"
+                                        matTooltip="Editar Tipo de Produto" [matTooltipPosition]="'above'"
+                                        class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+
+                                    <button mat-raised-button type="button" matTooltip="Remover Tipo Produto"
+                                        (click)="openConfirmationDialog(tipoProduto)" [matTooltipPosition]="'above'"
+                                        class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </td>
                                 </tr>
                             </tbody>
                           </table>
