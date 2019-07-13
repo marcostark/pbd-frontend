@@ -2,6 +2,71 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
+          <div class="card">
+              <div class="card-header card-header-danger">
+                  <h4 class="card-title">Usuários</h4>
+                  <p class="card-category">Cadastro de Usuários</p>
+              </div>
+              <div class="card-body">
+                  <form [formGroup]="usuarioForm" novalidate>
+                      <div class="row">
+                          <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Nome" type="text" formControlName="nome">
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                              <input  matInput placeholder="CPF" type="text" formControlName="cpf">
+                            </mat-form-field>
+                          </div>
+                      </div>
+
+                      <div class="row">                          
+                          <div class="col-md-4">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Email"  formControlName="email">
+                              </mat-form-field>
+                          </div>
+                          <div class="col-md-4">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Telefone 1" type="telefone1" formControlName="telefone1">
+                              </mat-form-field>
+                          </div>
+                          <div class="col-md-4">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Telefone 2" type="telefone2">
+                              </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Senha" type="password"  formControlName="senha">
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Confirme a Senha" type="password">
+                            </mat-form-field>
+                          </div>
+                      </div>                     
+                      <button 
+                        mat-raised-button 
+                        type="submit"
+                        (click) ="adicionarUsuario(usuarioForm.value)"
+                        class="btn btn-danger pull-right">
+                        Cadastrar
+                      </button>
+                      <div class="clearfix"></div>
+                  </form>
+              </div>
+          </div>
+      </div>      
+  </div>   
+    
+    <div class="row">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title ">Usuários</h4>

@@ -21,4 +21,8 @@ export class UsuarioService {
     return this.httpClient.get<UsuarioModel>(this.usuarioEndpoint + id + '/');
   }
 
+  adicionarUsuario(usuario: UsuarioModel): Observable<UsuarioModel>{
+    return this.httpClient.post<UsuarioModel>(this.usuarioEndpoint, usuario)
+  }
+
 }

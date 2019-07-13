@@ -5,4 +5,5 @@ export class UsuarioModel {
     email: String;
     cpf: String;
     senha: String;
+    telefone1: String;
 }
