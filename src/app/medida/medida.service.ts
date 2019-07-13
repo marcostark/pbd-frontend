@@ -20,4 +20,8 @@ export class MedidaService {
   getMedida(id: number): Observable<MedidaModel> {
     return this.httpClient.get<MedidaModel>(this.medidaEndpoint + id + '/');
   }
+
+  adicionaMedida(medida: MedidaModel): Observable<MedidaModel> {
+    return this.httpClient.post<MedidaModel>(this.medidaEndpoint, medida);
+  }
 }

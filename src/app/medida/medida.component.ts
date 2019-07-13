@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class MedidaComponent implements OnInit {
 
   private _medida: MedidaModel = new MedidaModel();
-  public marcaForm: FormGroup;
+  public medidaForm: FormGroup;
 
   medidas: MedidaModel[];
 
@@ -22,11 +22,12 @@ export class MedidaComponent implements OnInit {
 
   ngOnInit() {
     this.getData()
-    // this.marcaForm = this._fb.group(
-    //   {
-    //     nome: ['', Validators.required],
-    //   }
-    // )
+    this.medidaForm = this._fb.group(
+      {
+        unidade: ['', Validators.required],
+        valor: ['', Validators.required],
+      }
+    )
   }
 
   getData(){
@@ -39,18 +40,19 @@ export class MedidaComponent implements OnInit {
     )
   }
 
-  adicionarMarca(formMedida){
-    // this._medida.nome = formMarca.nome;
+  adicionarMedida(formMedida){    
+    this._medida.unidade = formMedida.unidade;
+    this._medida.valor = formMedida.valor;
     
-    // console.log(this._medida);
+    console.log(this._medida);
     
-    // this.service.adicionarMarca(this._medida).subscribe(
-    // (data: any) => {
-    //   this.getData(); // Executado depois de dar o post
-    // },      
-    //   (erro) => console.log(erro)      
-    // );    
-    // this.marcaForm.reset();
+    this.service.adicionaMedida(this._medida).subscribe(
+    (data: any) => {
+      this.getData(); // Executado depois de dar o post
+    },      
+      (erro) => console.log(erro)      
+    );    
+    this.medidaForm.reset();
     // this.showNotification(1, this._medida.assunto);
   }
 

@@ -20,23 +20,21 @@
                                 type="text">
                             </mat-form-field> -->
                         
-                        <div class="dropdown">
-                                <button href="#" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true" >
-                                    Regular
-                                    <b class="caret"></b>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </div>
-                        </div> 
-
+                            <mat-form-field>
+                                <mat-label>Selecione a unidade</mat-label>
+                                <mat-select [(value)]="selected" formControlName="unidade">
+                                  <mat-option>None</mat-option>
+                                  <mat-option value="1">kilo (kg)</mat-option>
+                                  <mat-option value="2">unidade (un)</mat-option>
+                                  <mat-option value="3">litro (l)</mat-option>
+                                  <mat-option value="4">kilograma(g)</mat-option>
+                                  <mat-option value="5">miligrama (mg)</mat-option>
+                                  <mat-option value="6">Dúzia</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                              
+                              <p>You selected: {{selected}}</p>
+                       </div>
                         <div class="col-md-10">
                             <mat-form-field 
                                 class="example-full-width">
