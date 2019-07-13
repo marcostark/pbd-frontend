@@ -29,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,    
+    AdminLayoutComponent,
   ],
   providers: [
     CCBST_INJECTABLES,

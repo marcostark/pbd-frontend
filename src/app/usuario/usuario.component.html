@@ -1,0 +1,60 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">Usuários</h4>
+            <p class="card-category"> Usuários cadastrados </p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Nome
+                  </th>
+                  <th>
+                    Opções
+                  </th>
+                  <th>
+                    Opções
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let usuario of usuarios">
+                    <td>
+                      {{usuario.id}}
+                    </td>
+                    <td>
+                      {{usuario.nome}}
+                    </td>
+                    <td>
+                      {{usuario.email}}
+                    </td>
+                    <td class="td-actions text-left">
+                      <button mat-raised-button type="button" (click)="editarProduto(produto)"
+                        matTooltip="Editar Produto" [matTooltipPosition]="'above'"
+                        class="btn btn-primary btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">edit</i>
+                      </button>
+
+                      <button mat-raised-button type="button" matTooltip="Remover Produto"
+                        (click)="openConfirmationDialog(produto)" [matTooltipPosition]="'above'"
+                        class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
