@@ -4,6 +4,7 @@ import { UsuarioService } from './usuario.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MustMatch } from 'app/shared/_helpers/must-match.validator';
 
 @Component({
   selector: 'app-usuario',
@@ -14,26 +15,42 @@ export class UsuarioComponent implements OnInit {
 
   private _usuario: UsuarioModel = new UsuarioModel();
   usuarios: UsuarioModel[];
-  public usuarioForm: FormGroup;
+  usuarioForm: FormGroup;
+  submitted = false;
 
   constructor(
-    private service: UsuarioService,
-    private _fb: FormBuilder,
+    private service: UsuarioService,    
     public dialog: MatDialog,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     this.getData()
-    this.usuarioForm = this._fb.group(
-      {
-        nome: ['', Validators.required],
-        email: ['', Validators.required],
-        cpf: ['', Validators.required],
-        telefone1: ['', Validators.required],
-        senha: ['', Validators.required],
-      }
-    )
+    // this.usuarioForm = this.formBuilder.group(
+    //   {
+    //     nome: ['', Validators.required],
+    //     email: ['', Validators.required, Validators.email],
+    //     senha: ['', Validators.required, Validators.minLength(6)],
+    //     confirmaSenha: ['', Validators.required]
+    //   },
+    //    {
+    //     validator: MustMatch('password', 'confirmPassword')
+    //   }
+    // );
+    this.usuarioForm = this.formBuilder.group({
+      nome: ['', Validators.required],
+      cpf: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefone1: ['', Validators.required],
+      senha: ['', [Validators.required, Validators.minLength(6)]],
+      confirmaSenha: ['', Validators.required]
+  }, {
+      validator: MustMatch('senha', 'confirmaSenha')
+  });
   }
+  
+  // convenience getter for easy access to form fields
+  get f() { return this.usuarioForm.controls; }
 
   getData(){
     this.service.getUsuarios().subscribe(
@@ -45,12 +62,30 @@ export class UsuarioComponent implements OnInit {
     )
   }
 
-  adicionarUsuario(formUsuario){
-    this._usuario.nome = formUsuario.nome;
-    this._usuario.email = formUsuario.email;
-    this._usuario.cpf = formUsuario.cpf;
-    this._usuario.senha = formUsuario.senha;
-    this._usuario.telefone1 = formUsuario.telefone1;
+//   onSubmit() {
+//     this.submitted = true;
+
+//     // stop here if form is invalid
+//     if (this.usuarioForm.invalid) {
+//         return;
+//     }
+
+//     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.usuarioForm.value))
+// }
+
+
+  onSubmit(){
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.usuarioForm.invalid) {
+      return
+    }
+    this._usuario.nome = this.usuarioForm.value.nome;
+    this._usuario.email = this.usuarioForm.value.email;
+    this._usuario.cpf = this.usuarioForm.value.cpf;
+    this._usuario.senha = this.usuarioForm.value.senha;
+    this._usuario.telefone1 = this.usuarioForm.value.telefone1;
 
     console.log(this._usuario);
 
@@ -60,7 +95,8 @@ export class UsuarioComponent implements OnInit {
       },
       (erro) => console.log(erro)
     );
-    this.usuarioForm.reset();    
+    this.usuarioForm.reset();  
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.usuarioForm.value))      
   }
 
   openConfirmationDialog(usuario){
