@@ -26,22 +26,21 @@ import {
   MatRippleModule,
   MatFormFieldModule,
   MatTooltipModule,
-  MatSelectModule
-} from '@angular/material';
+  MatSelectModule} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
     MarcaModule,
     MedidaModule,
+    MatButtonModule,
+    MatInputModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatSelectModule,
     TipoEstabelecimentoModule,
     TipoProdutoModule,
     LocalModule,
@@ -58,9 +57,8 @@ import {
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    UpgradeComponent,    
-
-  ]
+    UpgradeComponent,
+  ],  
 })
 
 export class AdminLayoutModule {}

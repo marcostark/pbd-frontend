@@ -14,12 +14,29 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
+
+import {
+  MatButtonModule,
+  MatInputModule,
+  MatRippleModule,
+  MatFormFieldModule,
+  MatTooltipModule,
+  MatDialogModule,
+  MatSelectModule} from '@angular/material';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    MatButtonModule,
+    MatInputModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatSelectModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
@@ -30,6 +47,10 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    ConfirmationDialogComponent,
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   providers: [
     CCBST_INJECTABLES,

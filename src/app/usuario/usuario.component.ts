@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioModel } from 'app/dashboard/model/usuario.model';
 import { UsuarioService } from './usuario.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuario',
@@ -17,6 +19,7 @@ export class UsuarioComponent implements OnInit {
   constructor(
     private service: UsuarioService,
     private _fb: FormBuilder,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit() {
@@ -59,6 +62,30 @@ export class UsuarioComponent implements OnInit {
     );
     this.usuarioForm.reset();    
   }
-     
 
-}
+  openConfirmationDialog(usuario){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '450px',
+      data: "Deseja realmente excluir o usuário: " + usuario.nome
+    });
+    dialogRef.afterClosed().subscribe(result => {
+          if(result) {
+            this.removerUsuario(usuario.id);
+          }
+        });
+  }
+
+  removerUsuario(usuario){
+    this.service.removerUsuario(usuario).subscribe(
+      (data: any) => {
+        this.getData()
+      },
+      (erro) => console.log(erro)
+      );
+  }
+
+  editarUsuario(usuario){
+    console.log("Editar usuário: " + usuario.nome)
+  }
+  }
+     

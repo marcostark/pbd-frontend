@@ -25,4 +25,9 @@ export class UsuarioService {
     return this.httpClient.post<UsuarioModel>(this.usuarioEndpoint, usuario)
   }
 
+  // TODO resolver problema de CORS
+  removerUsuario(id: number): Observable<any> {
+    return this.httpClient.delete(this.usuarioEndpoint + `${id}`);
+  }
+
 }

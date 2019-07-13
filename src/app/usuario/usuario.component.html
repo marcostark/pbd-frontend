@@ -4,8 +4,8 @@
       <div class="col-md-12">
           <div class="card">
               <div class="card-header card-header-danger">
-                  <h4 class="card-title">Usuários</h4>
-                  <p class="card-category">Cadastro de Usuários</p>
+                  <h4 class="card-title">Cadastro de Usuários</h4>
+                  <p class="card-category">Preencha as informações</p>
               </div>
               <div class="card-body">
                   <form [formGroup]="usuarioForm" novalidate>
@@ -101,14 +101,14 @@
                       {{usuario.email}}
                     </td>
                     <td class="td-actions text-left">
-                      <button mat-raised-button type="button" (click)="editarProduto(produto)"
-                        matTooltip="Editar Produto" [matTooltipPosition]="'above'"
+                      <button mat-raised-button type="button" (click)="editarUsuario(usuario)"
+                        matTooltip="Editar Usuário" [matTooltipPosition]="'above'"
                         class="btn btn-primary btn-link btn-sm btn-just-icon">
                         <i class="material-icons">edit</i>
                       </button>
 
-                      <button mat-raised-button type="button" matTooltip="Remover Produto"
-                        (click)="openConfirmationDialog(produto)" [matTooltipPosition]="'above'"
+                      <button mat-raised-button type="button" matTooltip="Remover Usuário"
+                        (click)="openConfirmationDialog(usuario)" [matTooltipPosition]="'above'"
                         class="btn btn-danger btn-link btn-sm btn-just-icon">
                         <i class="material-icons">close</i>
                       </button>
