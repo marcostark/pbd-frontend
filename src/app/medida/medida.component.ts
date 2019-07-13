@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MedidaModel } from 'app/dashboard/model/medida.model';
 import { MedidaService } from './medida.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-medida',
@@ -18,6 +20,7 @@ export class MedidaComponent implements OnInit {
   constructor(
     private service: MedidaService,
     private _fb: FormBuilder,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -56,8 +59,25 @@ export class MedidaComponent implements OnInit {
     // this.showNotification(1, this._medida.assunto);
   }
 
-  openConfirmationDialog() {
-    console.log("Remover");
+  openConfirmationDialog(medida){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '450px',
+      data: "Deseja realmente excluir a medida: " + medida.nome
+    });
+    dialogRef.afterClosed().subscribe(result => {
+          if(result) {
+            this.removerMedida(medida.id);
+          }
+        });
+  }
+
+  removerMedida(medida){
+    this.service.removerMedida(medida).subscribe(
+      (data: any) => {
+        this.getData()
+      },
+      (erro) => console.log(erro)
+      );
   }
 
   editarMedida(medida){

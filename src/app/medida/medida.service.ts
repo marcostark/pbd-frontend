@@ -7,7 +7,7 @@ import { MedidaModel } from '../dashboard/model/medida.model';
   providedIn: 'root'
 })
 export class MedidaService {
-
+  
   constructor(
     @Inject('MEDIDA_ENDPOINT') private medidaEndpoint: string,
     private httpClient: HttpClient
@@ -23,5 +23,9 @@ export class MedidaService {
 
   adicionaMedida(medida: MedidaModel): Observable<MedidaModel> {
     return this.httpClient.post<MedidaModel>(this.medidaEndpoint, medida);
+  }
+
+  removerMedida(id: number) {
+    return this.httpClient.delete(this.medidaEndpoint + `${id}`);
   }
 }
