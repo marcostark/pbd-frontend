@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EstabelecimentoModel } from 'app/dashboard/model/estabelecimento.model';
+import { EstabelecimentoService } from './estabelecimento.service';
 
 @Component({
   selector: 'app-estabelecimento',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstabelecimentoComponent implements OnInit {
 
-  constructor() { }
+  estabelecimentos: EstabelecimentoModel[];
+
+  constructor(
+    private service: EstabelecimentoService
+  ) { }
 
   ngOnInit() {
+    this.getdata();
   }
+
+  getdata(){
+    this.service.getEstabelecimentos().subscribe(
+      estabelecimentos => {
+        this.estabelecimentos = estabelecimentos;    
+        console.log(this.estabelecimentos)     
+      },
+      (erro) => console.error(erro)
+    )
+  }
+
 
 }

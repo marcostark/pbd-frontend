@@ -1,8 +1,10 @@
 import { MarcaModel } from './marca.model';
-import { TipoProdutoModel } from './tipo-produto.model';
+import { LocalModel } from './local.model';
+import { TipoEstabelecimentoModel } from './tipo-estabelecimento.model';
 
-export class Estabelecimento {
+export class EstabelecimentoModel {
     id: number;    
-    marca: MarcaModel;
-    tipoProduto: TipoProdutoModel;
+    nome: MarcaModel;
+    local: LocalModel;
+    tipoEstabelecimento: TipoEstabelecimentoModel;
 }

@@ -7,6 +7,9 @@ export const CCBST_INJECTABLES = [
     { provide: 'TIPO_ESTABELECIMENTO_ENDPOINT', useValue: HOST + '/tipo-estabelecimento/' },
     { provide: 'TIPO_PRODUTO_ENDPOINT', useValue: HOST + '/tipo-produto/' },
     { provide: 'ITEM_ENDPOINT', useValue: HOST + '/itens/' },
+    { provide: 'LOCAL_ENDPOINT', useValue: HOST + '/locais/' },
+    { provide: 'ESTABELECIMENTO_ENDPOINT', useValue: HOST + '/estabelecimentos/' },
+    { provide: 'PRODUTO_ENDPOINT', useValue: HOST + '/produtos/' },
 
     { provide: 'PAGE_SIZE', useValue: '20' },
 ];
