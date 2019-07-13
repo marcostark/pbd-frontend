@@ -34,4 +34,8 @@ export class TipoProdutoService {
     return this.httpClient.post<TipoProdutoModel>(this.tipoProdutoEndpoint, tipoProduto);
   }
 
+  removerTipoProduto(id: number): Observable<any>{
+    return this.httpClient.delete(this.tipoProdutoEndpoint + `${id}`);
+  }
+
 }

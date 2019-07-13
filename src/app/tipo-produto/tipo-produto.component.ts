@@ -3,6 +3,8 @@ import { TipoProdutoModel } from 'app/dashboard/model/tipo-produto.model';
 import { TipoProdutoService } from './tipo-produto.service';
 import { MedidaModel } from 'app/dashboard/model/medida.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-tipo-produto',
@@ -21,6 +23,7 @@ export class TipoProdutoComponent implements OnInit {
   constructor(
     private service: TipoProdutoService,
     private formBuilder: FormBuilder,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -55,5 +58,26 @@ export class TipoProdutoComponent implements OnInit {
       },
       erro => console.error(erro)
     )
+  }
+
+  openConfirmationDialog(tipoProduto){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '450px',
+      data: "Deseja realmente excluir o tipo de produto: " + tipoProduto.nome
+    });
+    dialogRef.afterClosed().subscribe(result => {
+          if(result) {
+            this.removerUsuario(tipoProduto.id);
+          }
+        });
+  }
+
+  removerUsuario(usuario){
+    this.service.removerTipoProduto(usuario).subscribe(
+      (data: any) => {
+        this.getData()
+      },
+      (erro) => console.log(erro)
+      );
   }
 }
