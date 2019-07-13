@@ -21,4 +21,9 @@ export class EstabelecimentoService {
     return this.httpClient.get<EstabelecimentoModel>(this.estabelecimentoEndpoint + id + '/');
   }
 
+  // TODO resolver problema de CORS
+  removerEstabelecimento(id: number): Observable<any> {
+    return this.httpClient.delete(this.estabelecimentoEndpoint + `${id}`);
+  }
+
  }
