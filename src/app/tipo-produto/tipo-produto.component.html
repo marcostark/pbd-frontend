@@ -9,17 +9,17 @@
                         </div>
                     
                 <div class="card-body">
-                        <form [formGroup]="medidaForm" novalidate>
+                        <form [formGroup]="tipoProdutoForm" novalidate>
                         <div class="row">
                            <div class="col-md-2">
                             
                             <mat-form-field>
-                                <mat-label>Selecione o Tipo</mat-label>
-                                <mat-select [(value)]="selected">
+                                <mat-label>Selecione o tipo de Medida</mat-label>
+                                <mat-select [(ngModel)]="selected" formControlName="medida">
                                   <mat-option>None</mat-option>
-                                  <mat-option value="option1">Option 1</mat-option>
-                                  <mat-option value="option2">Option 2</mat-option>
-                                  <mat-option value="option3">Option 3</mat-option>
+                                  <mat-option *ngFor="let medida of medidas" [value]="medida" >{{medida.unidade}}</mat-option>
+                                  <!-- <mat-option value="option2">Option 2</mat-option>
+                                  <mat-option value="option3">Option 3</mat-option> -->
                                 </mat-select>
                               </mat-form-field>
                               
@@ -30,7 +30,7 @@
                                 <mat-form-field 
                                     class="example-full-width">
                                     <input 
-                                        formControlName="valor"
+                                        formControlName="nome"
                                         required minlength="2"
                                         matInput 
                                         placeholder="Nome" 
@@ -41,7 +41,7 @@
                         <button 
                             mat-raised-button 
                             type="submit" 
-                            (click)="adicionarMedida(medidaForm.value)"
+                            (click)="adicionarTipoProduto(tipoProdutoForm.value)"
                             class="btn btn-danger pull-right">Cadastrar</button>
                         <div class="clearfix"></div>
                     </form>
