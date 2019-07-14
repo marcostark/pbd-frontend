@@ -1,88 +1,137 @@
 <div class="main-content">
-  <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-            <button 
-                mat-raised-button 
-                type="submit"  
-                routerLink="/produto-form"  
-                class="btn btn-danger pull-right">Cadastrar Produto</button>
-            <div class="clearfix"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button mat-raised-button type="submit" routerLink="/produto-form"
+                    class="btn btn-danger pull-right">Cadastrar Produto</button>
+                <div class="clearfix"></div>
+            </div>
         </div>
-      </div>
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title ">Produtos</h4>
-                      <p class="card-category"> Listagem de produtos </p>
-                  </div>
-                  <div class="card-body">
-                      <div class="table-responsive">
-                          <table class="table">
-                              <thead class=" text-primary">
-                                  <th>
-                                      ID
-                                  </th>
-                                  <th>
-                                      Item
-                                  </th>
-                                  <th>
-                                      Usuário
-                                  </th>
-                                  <th>
-                                      Estabelecimento
-                                  </th>
-                                  <th>
-                                      Data de Cadastro
-                                  </th>
-                                  <th>
-                                    Valor
-                                </th>
-                                <th>
-                                    Opções
-                                </th>
-                              </thead>
-                              <tbody>
-                                  <tr *ngFor="let produto of produtos">
-                                      <td>
-                                          {{produto.id}}
-                                      </td>
-                                      <td>
-                                          {{produto.item.tipoProduto.nome}}
-                                      </td>
-                                      <td>
-                                          {{produto.usuario.nome}}
-                                      </td>
-                                      <td>
-                                          {{produto.estabelecimento.nome}}
-                                      </td>
-                                      <td>
-                                        {{produto.data_cadastro | date: 'dd/MM/yyyy'}}
-                                    </td>
-                                    <td>
-                                        {{produto.valor}}
-                                    </td>
-                                    <td class="td-actions text-left">
-                                        <button mat-raised-button type="button" (click)="editarProduto(produto)"
-                                            matTooltip="Editar Produto" [matTooltipPosition]="'above'"
-                                            class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-    
-                                        <button mat-raised-button type="button" matTooltip="Remover Produto"
-                                            (click)="openConfirmationDialog(produto)" [matTooltipPosition]="'above'"
-                                            class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-          </div>          
-      </div>
-  </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title mt-0"> Pesquisa </h4>
+                        <p class="card-category">Informe os campos que deseja realizar a busca</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Escolha o Usuario</mat-label>
+                                        <mat-select>
+                                            <mat-option *ngFor="let produto of produtos" [value]="produto.usuario">
+                                                {{produto.usuario.nome}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Escolha o Estabelecimento</mat-label>
+                                        <mat-select>
+                                            <mat-option *ngFor="let produto of produtos" [value]="produto.estabelecimento">
+                                                {{produto.estabelecimento.nome}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Escolha o Item</mat-label>
+                                        <mat-select>
+                                            <mat-option *ngFor="let produto of produtos" [value]="produto.item.tipoProduto">
+                                                {{produto.item.tipoProduto.nome}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Pesquisar</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Produtos</h4>
+                        <p class="card-category"> Listagem de produtos </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Item
+                                    </th>
+                                    <th>
+                                        Usuário
+                                    </th>
+                                    <th>
+                                        Estabelecimento
+                                    </th>
+                                    <th>
+                                        Data de Cadastro
+                                    </th>
+                                    <th>
+                                        Valor
+                                    </th>
+                                    <th>
+                                        Opções
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let produto of produtos">
+                                        <td>
+                                            {{produto.id}}
+                                        </td>
+                                        <td>
+                                            {{produto.item.tipoProduto.nome}}
+                                        </td>
+                                        <td>
+                                            {{produto.usuario.nome}}
+                                        </td>
+                                        <td>
+                                            {{produto.estabelecimento.nome}}
+                                        </td>
+                                        <td>
+                                            <!-- {{produto.data_cadastro | date: 'dd/MM/yyyy'}} -->
+                                            {{produto.data_cadastro}}
+                                        </td>
+                                        <td>
+                                            {{produto.valor}}
+                                        </td>
+                                        <td class="td-actions text-left">
+                                            <button mat-raised-button type="button" (click)="editarProduto(produto)"
+                                                matTooltip="Editar Produto" [matTooltipPosition]="'above'"
+                                                class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+
+                                            <button mat-raised-button type="button" matTooltip="Remover Produto"
+                                                (click)="openConfirmationDialog(produto)" [matTooltipPosition]="'above'"
+                                                class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
