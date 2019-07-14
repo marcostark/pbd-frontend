@@ -58,7 +58,7 @@
                                           {{produto.estabelecimento.nome}}
                                       </td>
                                       <td>
-                                        {{produto.data_cadastro}}
+                                        {{produto.data_cadastro | date: 'dd/MM/yyyy'}}
                                     </td>
                                     <td>
                                         {{produto.valor}}

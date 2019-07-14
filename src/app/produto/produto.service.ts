@@ -32,4 +32,8 @@ export class ProdutoService {
     return forkJoin([items, usuarios, estabelecimentos]);
   }
 
+  adicionarProduto(produto: ProdutoModel): Observable<ProdutoModel>{
+    return this.httpClient.post<ProdutoModel>(this.produtoEndpoint, produto )
+  }
+
 }

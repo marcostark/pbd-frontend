@@ -9,6 +9,15 @@ export class ProdutoModel {
     item: ItemModel;
     usuario: UsuarioModel;
     estabelecimento: EstabelecimentoModel;
-    dataCadastro: String;
+    data_cadastro: String;
+    valor: number;
+}
+
+export class ProdutoCreateUpdateModel {
+    id: number;    
+    item: number;
+    usuario: number;
+    estabelecimento: number;
+    data_cadastro: String;
     valor: number;
 }
