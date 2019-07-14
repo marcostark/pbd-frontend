@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { EstabelecimentoModel } from '../dashboard/model/estabelecimento.model';
 
 @Injectable({
@@ -10,6 +10,8 @@ export class EstabelecimentoService {
 
   constructor(
     @Inject('ESTABELECIMENTO_ENDPOINT') private estabelecimentoEndpoint: string,
+    @Inject('LOCAL_ENDPOINT') private localEndpoint: string,
+    @Inject('TIPO_ESTABELECIMENTO_ENDPOINT') private tipoEstabelecimetoEndpoint: string,
     private httpClient: HttpClient
   ) { }
 
@@ -24,6 +26,16 @@ export class EstabelecimentoService {
   // TODO resolver problema de CORS
   removerEstabelecimento(id: number): Observable<any> {
     return this.httpClient.delete(this.estabelecimentoEndpoint + `${id}`);
+  }
+
+  getCadastroEstabelecimento(): Observable<any> {
+    let locais = this.httpClient.get(this.localEndpoint);
+    let tipos = this.httpClient.get(this.tipoEstabelecimetoEndpoint);    
+    return forkJoin([locais, tipos]);
+  }
+
+  adicionarEstabelecimento(estabelecimento: EstabelecimentoModel): Observable<EstabelecimentoModel>{
+    return this.httpClient.post<EstabelecimentoModel>(this.estabelecimentoEndpoint, estabelecimento )
   }
 
  }
