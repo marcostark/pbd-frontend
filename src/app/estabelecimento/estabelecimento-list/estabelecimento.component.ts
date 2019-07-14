@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EstabelecimentoModel } from 'app/dashboard/model/estabelecimento.model';
-import { EstabelecimentoService } from './estabelecimento.service';
+import { EstabelecimentoService } from '../estabelecimento.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 
