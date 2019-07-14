@@ -15,7 +15,7 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
-
+import { LoginModule } from './login/login.module';
 import {
   MatButtonModule,
   MatInputModule,
@@ -35,6 +35,7 @@ import {
     MatRippleModule,
     MatFormFieldModule,
     MatTooltipModule,
+    LoginModule,
     MatDialogModule,
     MatSelectModule,
     ComponentsModule,
@@ -47,7 +48,7 @@ import {
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    ConfirmationDialogComponent,
+    ConfirmationDialogComponent,    
   ],
   entryComponents: [
     ConfirmationDialogComponent

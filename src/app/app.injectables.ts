@@ -2,6 +2,9 @@
 const HOST = 'http://192.168.100.8:8080';
 
 export const CCBST_INJECTABLES = [
+    
+    { provide: 'AUTH_ENDPOINT', useValue: HOST + '/auth/' },
+        
     { provide: 'MARCA_ENDPOINT', useValue: HOST + '/marcas/' },
     { provide: 'MEDIDA_ENDPOINT', useValue: HOST + '/medidas/' },
     { provide: 'TIPO_ESTABELECIMENTO_ENDPOINT', useValue: HOST + '/tipo-estabelecimento/' },

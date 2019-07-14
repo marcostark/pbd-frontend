@@ -46,7 +46,7 @@ import {
     LocalModule,
     EstabelecimentoModule,
     ItemModule,
-    ProdutoModule,
+    ProdutoModule,    
     UsuarioModule,   
   ],
   declarations: [

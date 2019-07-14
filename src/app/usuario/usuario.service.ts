@@ -30,4 +30,13 @@ export class UsuarioService {
     return this.httpClient.delete(this.usuarioEndpoint + `${id}`);
   }
 
+
+  // LOGIN
+  getSessionUser(username: string, sessionKey:string):Observable<UsuarioModel> {
+    const httpOptions = {
+        headers: {'Authorization': `Token${sessionKey}`}
+    };
+
+    return this.httpClient.get<UsuarioModel>(`${this.usuarioEndpoint}/${username}/`, httpOptions);
+}
 }
