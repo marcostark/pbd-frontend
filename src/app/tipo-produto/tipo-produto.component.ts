@@ -5,6 +5,7 @@ import { MedidaModel } from 'app/dashboard/model/medida.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tipo-produto',
@@ -24,6 +25,7 @@ export class TipoProdutoComponent implements OnInit {
     private service: TipoProdutoService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,9 @@ export class TipoProdutoComponent implements OnInit {
         nome: ['', Validators],
       }
     );
+  }
+  editarTipoProduto(tipo){
+    this._router.navigate(['/tipo-produto-edit', tipo.id])
   }
 
   adicionarTipoProduto(form){

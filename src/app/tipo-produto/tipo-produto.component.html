@@ -39,6 +39,7 @@
                         <button 
                             mat-raised-button 
                             type="submit" 
+                            [disabled]="tipoProdutoForm.invalid"
                             (click)="adicionarTipoProduto(tipoProdutoForm.value)"
                             class="btn btn-danger pull-right">Cadastrar</button>
                         <div class="clearfix"></div>

@@ -1,0 +1,49 @@
+<div class="main-content">
+  <div class="container-fluid">
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Tipos de Produtos</h4>
+                            <p class="card-category">Edite o Tipo de Produto</p>
+                        </div>
+                    
+                <div class="card-body">
+                        <form [formGroup]="tipoProdutoForm" novalidate (ngSubmit)="onSubmit()">
+                        <div class="row">
+                           <div class="col-md-2">
+                            
+                            <mat-form-field>
+                                <mat-label>Selecione o tipo de Medida</mat-label>
+                                <mat-select [(ngModel)]="selected" formControlName="medida">
+                                  <mat-option>None</mat-option>
+                                  <mat-option *ngFor="let medida of medidas" [value]="medida" >{{medida.unidade}}</mat-option>                                  
+                                </mat-select>
+                              </mat-form-field>
+                            </div> 
+    
+                            <div class="col-md-10">
+                                <mat-form-field 
+                                    class="example-full-width">
+                                    <input 
+                                        formControlName="nome"
+                                        required minlength="2"
+                                        matInput 
+                                        placeholder="Nome" 
+                                        type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <button 
+                            mat-raised-button 
+                            type="submit" 
+                            [disabled]="tipoProdutoForm.invalid"
+                            class="btn btn-danger pull-right">Salvar</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>        
+  </div>
+</div>

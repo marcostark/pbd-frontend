@@ -11,6 +11,7 @@ import {
   MatTooltipModule,
   MatDialogModule,
   MatSelectModule} from '@angular/material';
+import { TipoProdutoFormComponent } from './tipo-produto-form/tipo-produto-form.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {
   ],
   declarations: [
     TipoProdutoComponent,
+    TipoProdutoFormComponent,
   ]
 })
 export class TipoProdutoModule { }

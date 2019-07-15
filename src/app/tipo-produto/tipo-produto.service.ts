@@ -30,6 +30,14 @@ export class TipoProdutoService {
     return forkJoin([response1, response2]);
   }
 
+  getMedidas(): Observable<MedidaModel[]>{
+    return this.httpClient.get<MedidaModel[]>(this.medidaEndpoint)
+  }
+
+  editarTipo(tipo: any):  Observable<TipoProdutoModel> {    
+    return this.httpClient.put<TipoProdutoModel>(this.tipoProdutoEndpoint + tipo.id + '/', tipo);    
+  }
+
   adicionarTipoProduto(tipoProduto: TipoProdutoModel): Observable<TipoProdutoModel> {
     return this.httpClient.post<TipoProdutoModel>(this.tipoProdutoEndpoint, tipoProduto);
   }
