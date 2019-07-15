@@ -1,0 +1,40 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Itens</h4>
+            <p class="card-category">Edite o Item</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="itemForm" novalidate (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Selecione a Marca</mat-label>
+                    <mat-select [(ngModel)]="marcaSelected" formControlName="marca">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let marca of marcas" [value]="marca">{{marca.nome}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Selecione o Tipo do Produto</mat-label>
+                    <mat-select [(ngModel)]="tipoSelected" formControlName="tipo">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let tipo of tipos" [value]="tipo">{{tipo.nome}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button type="submit" [disabled]="itemForm.invalid"
+                class="btn btn-danger pull-right">Salvar</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </div>

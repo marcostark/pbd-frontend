@@ -12,6 +12,7 @@ import {
   MatDialogModule,
   MatSelectModule
 } from '@angular/material';
+import { ItemFormComponent } from './item-form/item-form.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import {
   ],
   declarations: [
     ItemComponent,
+    ItemFormComponent,
   ]
 })
 export class ItemModule { }
