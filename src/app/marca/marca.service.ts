@@ -25,6 +25,10 @@ export class MarcaService {
     return this.httpClient.post<MarcaModel>(this.marcaEndpoint, marca);    
   }
 
+  editarMarca(marca: any):  Observable<MarcaModel> {    
+    return this.httpClient.put<MarcaModel>(this.marcaEndpoint + marca.id + '/', marca);    
+  }
+
   // TODO resolver problema de CORS
   removerMarca(id: number): Observable<any> {
     return this.httpClient.delete(this.marcaEndpoint + `${id}`);

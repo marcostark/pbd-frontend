@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { MarcaService } from './marca.service';
 import { MarcaModel } from 'app/dashboard/model/marca.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class MarcaComponent implements OnInit {
     private service: MarcaService,
     private _fb: FormBuilder,    
     public dialog: MatDialog,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -35,8 +37,7 @@ export class MarcaComponent implements OnInit {
   getData(){
     this.service.getMarcas().subscribe(
       marcas => {
-        this.marcas = marcas;  
-        console.log(this.marcas)             
+        this.marcas = marcas;                  
       },      
       erro => console.error(erro)
     )
@@ -66,8 +67,8 @@ export class MarcaComponent implements OnInit {
       );
   }
 
-  editarMarca(marca){
-    console.log(marca);
+  editarMarca(marca){    
+    this._router.navigate(['/marca-edit', marca.id])
   }
 
   openConfirmationDialog(marca): void {

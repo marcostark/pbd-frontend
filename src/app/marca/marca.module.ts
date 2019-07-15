@@ -11,6 +11,7 @@ import {
   MatTooltipModule,
   MatDialogModule,
   MatSelectModule} from '@angular/material';
+import { MarcaFormComponent } from './marca-form/marca-form.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import {
   declarations: [
     MarcaComponent,
     DialogOverviewExampleDialog,
+    MarcaFormComponent,
   ]
 })
 export class MarcaModule { }
