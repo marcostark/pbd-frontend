@@ -1,9 +1,10 @@
 
 export class UsuarioModel {
     id: number;    
-    nome: String;
-    email: String;
-    cpf: String;
-    senha: String;
-    telefone1: String;
+    nome: string;
+    email: string;
+    cpf: string;
+    senha: string;
+    telefone1: string;
+    token: string;
 }

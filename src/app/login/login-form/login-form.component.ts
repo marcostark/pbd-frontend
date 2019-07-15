@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CredenciaisModel } from 'app/dashboard/model/credenciais.model';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -13,9 +15,12 @@ export class LoginFormComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
+  private credenciais: CredenciaisModel = new CredenciaisModel();
+
   constructor(
     private formBuilder: FormBuilder,
-  ) { }
+    private authenticationService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -24,16 +29,28 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-   // convenience getter for easy access to form fields
-   get f() { return this.loginForm.controls; }
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
 
-   onSubmit() {
-    this.submitted = true;
-
+  // 
+  
+  onSubmit() {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log("Logar")
-  }
+    this.credenciais.email = this.loginForm.value.username;
+    this.credenciais.senha = this.loginForm.value.password;
+    console.log(this.credenciais)
+
+    this.authenticationService.login(this.credenciais)
+    .subscribe(
+        response => {
+          console.log(response);          
+        },
+        error => {
+          console.log(error);                    
+        }
+    )   
+}
 
 }
