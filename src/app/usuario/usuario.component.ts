@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MustMatch } from 'app/shared/_helpers/must-match.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -19,10 +20,11 @@ export class UsuarioComponent implements OnInit {
   submitted = false;
 
   constructor(
-    private service: UsuarioService,    
+    private service: UsuarioService,
     public dialog: MatDialog,
+    private _router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getData()
@@ -44,38 +46,38 @@ export class UsuarioComponent implements OnInit {
       telefone1: ['', Validators.required],
       senha: ['', [Validators.required, Validators.minLength(6)]],
       confirmaSenha: ['', Validators.required]
-  }, {
-      validator: MustMatch('senha', 'confirmaSenha')
-  });
+    }, {
+        validator: MustMatch('senha', 'confirmaSenha')
+      });
   }
-  
+
   // convenience getter for easy access to form fields
   get f() { return this.usuarioForm.controls; }
 
-  getData(){
+  getData() {
     this.service.getUsuarios().subscribe(
       usuarios => {
         this.usuarios = usuarios;
         console.log(usuarios)
       },
       // (erro) => console.error(erro)
-      (erro) => {}
+      (erro) => { }
     )
   }
 
-//   onSubmit() {
-//     this.submitted = true;
+  //   onSubmit() {
+  //     this.submitted = true;
 
-//     // stop here if form is invalid
-//     if (this.usuarioForm.invalid) {
-//         return;
-//     }
+  //     // stop here if form is invalid
+  //     if (this.usuarioForm.invalid) {
+  //         return;
+  //     }
 
-//     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.usuarioForm.value))
-// }
+  //     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.usuarioForm.value))
+  // }
 
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -91,38 +93,38 @@ export class UsuarioComponent implements OnInit {
     console.log(this._usuario);
 
     this.service.adicionarUsuario(this._usuario).subscribe(
-      (data: any)=> {
+      (data: any) => {
         this.getData();
       },
       (erro) => console.log(erro)
     );
-    this.usuarioForm.reset();  
+    this.usuarioForm.reset();
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.usuarioForm.value))      
   }
 
-  openConfirmationDialog(usuario){
+  openConfirmationDialog(usuario) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
       data: "Deseja realmente excluir o usuário: " + usuario.nome
     });
     dialogRef.afterClosed().subscribe(result => {
-          if(result) {
-            this.removerUsuario(usuario.id);
-          }
-        });
+      if (result) {
+        this.removerUsuario(usuario.id);
+      }
+    });
   }
 
-  removerUsuario(usuario){
+  removerUsuario(usuario) {
     this.service.removerUsuario(usuario).subscribe(
       (data: any) => {
         this.getData()
       },
       (erro) => console.log(erro)
-      );
+    );
   }
 
-  editarUsuario(usuario){
-    console.log("Editar usuário: " + usuario.nome)
+  editarUsuario(usuario) {
+    this._router.navigate(['/usuario-edit', usuario.id])
   }
-  }
-     
+}
+

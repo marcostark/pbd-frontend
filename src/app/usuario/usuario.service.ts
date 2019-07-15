@@ -25,6 +25,11 @@ export class UsuarioService {
     return this.httpClient.post<UsuarioModel>(this.usuarioEndpoint, usuario)
   }
 
+  editarUsuario(usuario: any):  Observable<UsuarioModel> {    
+    return this.httpClient.put<UsuarioModel>(this.usuarioEndpoint + usuario.id + '/', usuario);    
+  }
+
+
   // TODO resolver problema de CORS
   removerUsuario(id: number): Observable<any> {
     return this.httpClient.delete(this.usuarioEndpoint + `${id}`);

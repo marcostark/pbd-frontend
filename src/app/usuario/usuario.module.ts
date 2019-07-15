@@ -12,6 +12,7 @@ import {
   MatDialogModule,
   MatSelectModule
 } from '@angular/material';
+import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {
     MatSelectModule
   ],
   declarations: [
-    UsuarioComponent
+    UsuarioComponent,
+    UsuarioFormComponent
   ]
 })
 export class UsuarioModule { }

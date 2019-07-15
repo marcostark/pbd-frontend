@@ -1,0 +1,85 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="card-header card-header-danger">
+                  <h4 class="card-title">Editar de Usuários</h4>
+                  <p class="card-category">Preencha as informações</p>
+              </div>
+              <div class="card-body">
+                  <form [formGroup]="usuarioForm"  (ngSubmit)="onSubmit()">
+                      <div class="row">
+                          <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Nome" type="text" formControlName="nome" [ngClass]="{ 'is-invalid': submitted && f.nome.errors }"/>
+                              <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+                                <div *ngIf="f.nome.errors.required">Nome é requerido</div>
+                            </div>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                              <input  matInput placeholder="CPF" type="text" formControlName="cpf">
+                            </mat-form-field>
+                          </div>
+                      </div>
+
+                      <div class="row">                          
+                          <div class="col-md-4">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Email"  formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                  <div *ngIf="f.email.errors.required">Email é requerido</div>
+                                  <div *ngIf="f.email.errors.email">Informe um endereço de email válido</div>
+                              </div>
+                              </mat-form-field>
+                          </div>
+                          <div class="col-md-4">
+                              <mat-form-field class="example-full-width" [ngClass]="{ 'is-invalid': submitted && f.telefone1.errors }">
+                                <input matInput placeholder="Telefone 1" type="telefone1" formControlName="telefone1">
+                                <div *ngIf="submitted && f.telefone1.errors" class="invalid-feedback">
+                                  <div *ngIf="f.telefone1.errors.required">Telefone é requerido</div>                                  
+                              </div>                                
+                              </mat-form-field>
+                          </div>
+                          <div class="col-md-4">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Telefone 2" type="telefone2">
+                              </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Senha" type="password"  formControlName="senha" [ngClass]="{ 'is-invalid': submitted && f.senha.errors }" />
+                              <div *ngIf="submitted && f.senha.errors" class="invalid-feedback">
+                                <div *ngIf="f.senha.errors.required">senha is required</div>
+                                <div *ngIf="f.senha.errors.minlength">senha must be at least 6 characters</div>
+                            </div>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Confirme a Senha" type="password" formControlName="confirmaSenha" [ngClass]="{ 'is-invalid': submitted && f.confirmaSenha.errors }" />
+                              <div *ngIf="submitted && f.confirmaSenha.errors" class="invalid-feedback">
+                                <div *ngIf="f.confirmaSenha.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.confirmaSenha.errors.mustMatch">Passwords must match</div>
+                            </div>
+                            </mat-form-field>
+                          </div>
+                      </div>                     
+                      <button 
+                        mat-raised-button 
+                        type="submit"                        
+                        class="btn btn-danger pull-right">
+                        Salvar
+                      </button>
+                      <div class="clearfix"></div>
+                  </form>
+              </div>
+          </div>
+      </div>      
+  </div>   
+  </div>
+</div>
