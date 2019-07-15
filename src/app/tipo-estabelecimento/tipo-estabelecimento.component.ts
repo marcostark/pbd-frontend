@@ -3,6 +3,7 @@ import { TipoEstabelecimentoService } from './tipo-estabelecimento.service';
 import { TipoEstabelecimentoModel } from 'app/dashboard/model/tipo-estabelecimento.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tipo-estabelecimento',
@@ -18,7 +19,8 @@ export class TipoEstabelecimentoComponent implements OnInit {
   constructor(
     private service: TipoEstabelecimentoService,
     private _fb: FormBuilder,
-    public dialog: MatDialog,    
+    public dialog: MatDialog,   
+    private _router: Router 
   ) { }
 
   ngOnInit() {    
@@ -53,7 +55,7 @@ export class TipoEstabelecimentoComponent implements OnInit {
   }
 
   editarTipo(tiposEstabelecimento){
-
+    this._router.navigate(['/tipo-estabelecimento-edit', tiposEstabelecimento.id])
   }
 
   removerTipoEstabelecimento(result){

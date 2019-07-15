@@ -24,6 +24,10 @@ export class TipoEstabelecimentoService {
     return this.httpClient.post<TipoEstabelecimentoModel>(this.tipoEndpoint, _tipoEstabelecimento);
   }
 
+  editarTipo(tipo: any):  Observable<TipoEstabelecimentoModel> {    
+    return this.httpClient.put<TipoEstabelecimentoModel>(this.tipoEndpoint + tipo.id + '/', tipo);    
+  }
+
   // TODO resolver problema de CORS
   removerTipo(id: number): Observable<any> {
     return this.httpClient.delete(this.tipoEndpoint + `${id}`);
