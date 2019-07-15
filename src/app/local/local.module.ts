@@ -12,6 +12,7 @@ import {
   MatDialogModule,
   MatSelectModule
 } from '@angular/material';
+import { LocalFormComponent } from './local-form/local-form.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import {
   ],
   declarations: [
     LocalComponent,
+    LocalFormComponent,
   ]
 })
 export class LocalModule { }

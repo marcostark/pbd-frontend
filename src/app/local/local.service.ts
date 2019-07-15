@@ -29,4 +29,12 @@ export class LocalService {
     return this.httpClient.get<UsuarioModel[]>(this.usuarioEndpoint)
   }
 
+  editarMedida(local: any):  Observable<LocalModel> {    
+    return this.httpClient.put<LocalModel>(this.localEndpoint + local.id + '/', local);    
+  }
+
+  removerLocal(id: number): Observable<any>{
+    return this.httpClient.delete(this.localEndpoint + `${id}`);
+  }
+
  }

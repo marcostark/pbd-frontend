@@ -3,6 +3,9 @@ import { LocalModel } from 'app/dashboard/model/local.model';
 import { LocalService } from './local.service';
 import { UsuarioModel } from 'app/dashboard/model/usuario.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-local',
@@ -20,10 +23,13 @@ export class LocalComponent implements OnInit {
   constructor(
     private service: LocalService,
     private formBuilder: FormBuilder, 
+    private dialog: MatDialog,
+    private _router: Router
   ) {}
 
   ngOnInit() {
     this.getData()
+    this.getUsuarios()
     this.localForm = this.formBuilder.group(
       {
         usuario: ['', Validators.required],
@@ -33,6 +39,16 @@ export class LocalComponent implements OnInit {
   }
 
   getData(){
+    this.service.getLocais().subscribe(
+      locais => {
+        this.locais = locais;
+        console.log(locais)
+      },
+      (erro) => console.error(erro)
+    )
+  }
+
+  getUsuarios(){
     this.service.getUsuarios().subscribe(
       usuarios => {
         this.usuarios = usuarios;
@@ -40,6 +56,10 @@ export class LocalComponent implements OnInit {
       },
       (erro) => console.error(erro)
     )
+  }
+
+  editarLocal(local){
+    this._router.navigate(['/local-edit', local.id])
   }
 
 
@@ -63,6 +83,28 @@ export class LocalComponent implements OnInit {
     // );
     // this.localForm.reset();  
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.localForm.value))      
+  }
+
+  openConfirmationDialog(local){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '450px',
+      data: "Deseja realmente excluir o local: " + local.nome
+    });
+    dialogRef.afterClosed().subscribe(result => {
+          if(result) {
+            this.removerUsuario(local.id);
+          }
+        });
+  }
+
+  
+  removerUsuario(local){
+    this.service.removerLocal(local).subscribe(
+      (data: any) => {
+        this.getData()
+      },
+      (erro) => console.log(erro)
+      );
   }
 
 }
