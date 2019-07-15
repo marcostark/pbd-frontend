@@ -4,6 +4,7 @@ import { MedidaService } from './medida.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-medida',
@@ -21,6 +22,7 @@ export class MedidaComponent implements OnInit {
     private service: MedidaService,
     private _fb: FormBuilder,
     public dialog: MatDialog,
+    private _router: Router,
   ) { }
 
   ngOnInit() {
@@ -81,7 +83,7 @@ export class MedidaComponent implements OnInit {
   }
 
   editarMedida(medida){
-    console.log(medida);
+    this._router.navigate(['/medida-edit', medida.id])
   }
 
 }

@@ -10,6 +10,7 @@ import {
   MatFormFieldModule,
   MatTooltipModule,
   MatSelectModule} from '@angular/material';
+import { MedidaFormComponent } from './medida-form/medida-form.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {
   ],
   declarations: [
     MedidaComponent,
+    MedidaFormComponent,
   ]
 })
 export class MedidaModule { }

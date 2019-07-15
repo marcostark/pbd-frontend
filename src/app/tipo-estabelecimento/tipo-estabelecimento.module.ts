@@ -11,6 +11,7 @@ import {
   MatFormFieldModule,
   MatTooltipModule,
   MatSelectModule} from '@angular/material';
+import { TipoEstabelecimentoFormComponent } from './tipo-estabelecimento-form/tipo-estabelecimento-form.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {
   ],
   declarations: [
     TipoEstabelecimentoComponent,
-    DialogOverviewExampleDialog]
+    DialogOverviewExampleDialog,
+    TipoEstabelecimentoFormComponent]
 })
 export class TipoEstabelecimentoModule { }

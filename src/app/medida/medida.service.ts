@@ -25,6 +25,10 @@ export class MedidaService {
     return this.httpClient.post<MedidaModel>(this.medidaEndpoint, medida);
   }
 
+  editarMedida(medida: any):  Observable<MedidaModel> {    
+    return this.httpClient.put<MedidaModel>(this.medidaEndpoint + medida.id + '/', medida);    
+  }
+
   removerMedida(id: number) {
     return this.httpClient.delete(this.medidaEndpoint + `${id}`);
   }

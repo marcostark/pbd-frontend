@@ -1,0 +1,52 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title">Unidade de Medida</h4>
+                      <p class="card-category">Cadastre a unidade de medida</p>
+                  </div>
+              
+          <div class="card-body">
+                  <form [formGroup]="medidaForm" novalidate (ngSubmit)="onSubmit()">
+                  <div class="row">
+                     <div class="col-md-2">
+                          <mat-form-field>
+                              <mat-label>Selecione a unidade</mat-label>
+                              <mat-select [(value)]="selected" formControlName="unidade">
+                                <mat-option>None</mat-option>
+                                <mat-option value="1">kilo (kg)</mat-option>
+                                <mat-option value="2">unidade (un)</mat-option>
+                                <mat-option value="3">litro (l)</mat-option>
+                                <mat-option value="4">kilograma(g)</mat-option>
+                                <mat-option value="5">miligrama (mg)</mat-option>
+                                <mat-option value="6">Dúzia</mat-option>
+                              </mat-select>
+                            </mat-form-field>                            
+                     </div>
+                      <div class="col-md-10">
+                          <mat-form-field 
+                              class="example-full-width">
+                              <input 
+                                  formControlName="valor"
+                                  required minlength="2"
+                                  matInput 
+                                  placeholder="Valor" 
+                                  type="text">
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <button 
+                      mat-raised-button 
+                      type="submit" 
+                      [disabled]="medidaForm.invalid"
+                      class="btn btn-danger pull-right">Cadastrar</button>
+                  <div class="clearfix"></div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>      
+  </div>
+</div>
