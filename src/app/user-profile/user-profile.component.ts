@@ -21,7 +21,10 @@ export class UserProfileComponent implements OnInit {
     let localUser = this.storage.getLocalUser()
     if (localUser && localUser.email) {
       this.buscaUsuarioPoremail(localUser.email);
-    }    
+    }else{
+      //Acesso não autorizado! Redirecionar para a pagina de login
+      console.log("Redirecionando para a pagina de login")
+    }  
   }
   
   buscaUsuarioPoremail(email: string){   
@@ -30,7 +33,12 @@ export class UserProfileComponent implements OnInit {
         this.usuario = usuario
         // console.log(this.usuario)
       },
-      erro => {}
+      error => {
+        if (error.status == 403){
+          //Acesso não autorizado! Redirecionar para a pagina de login
+          console.log("Redirecionando para a pagina de login")
+        }
+      }
     )
   }
 }
