@@ -24,6 +24,8 @@ import {
   MatTooltipModule,
   MatDialogModule,
   MatSelectModule} from '@angular/material';
+import { ErrorInterceptorProvider } from './_helpers/error.interceptor';
+import { StorageService } from './services/storage.service';
 
 @NgModule({
   imports: [
@@ -55,6 +57,8 @@ import {
   ],
   providers: [
     CCBST_INJECTABLES,
+    ErrorInterceptorProvider,
+    StorageService,
   ],
   bootstrap: [AppComponent]
 })

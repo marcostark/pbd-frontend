@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CredenciaisModel } from 'app/dashboard/model/credenciais.model';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -45,12 +45,10 @@ export class LoginFormComponent implements OnInit {
     this.authenticationService.login(this.credenciais)
     .subscribe(
         response => {
-          console.log(response);          
+          //console.log(response.headers.get('Authorization'));   
+          this.authenticationService.sucessfullLogin(response.headers.get('Authorization'));
         },
-        error => {
-          console.log(error);                    
-        }
-    )   
+        error => {})   
 }
 
 }
