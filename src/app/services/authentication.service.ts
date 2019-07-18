@@ -4,9 +4,12 @@ import { CredenciaisModel } from 'app/dashboard/model/credenciais.model';
 import { Observable } from 'rxjs';
 import { Session } from 'app/dashboard/model/session.model';
 import { StorageService } from './storage.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+
+    jwtHelperService:JwtHelperService =  new JwtHelperService();
 
     constructor(
         public storage: StorageService,
@@ -29,7 +32,8 @@ export class AuthenticationService {
     sucessfullLogin(authorizationValue: string){
         let tok = authorizationValue.substring(7);
         let user: Session = {
-            token: tok
+            token: tok,
+            email: this.jwtHelperService.decodeToken(tok).sub
         };
         this.storage.setLocalUser(user);
     }
