@@ -26,6 +26,7 @@ import {
   MatSelectModule} from '@angular/material';
 import { ErrorInterceptorProvider } from './_helpers/error.interceptor';
 import { StorageService } from './services/storage.service';
+import { AuthInterceptorProvider } from './_helpers/auth.interceptor';
 
 @NgModule({
   imports: [
@@ -57,8 +58,9 @@ import { StorageService } from './services/storage.service';
   ],
   providers: [
     CCBST_INJECTABLES,
+    AuthInterceptorProvider,
     ErrorInterceptorProvider,
-    StorageService,
+    StorageService,    
   ],
   bootstrap: [AppComponent]
 })
