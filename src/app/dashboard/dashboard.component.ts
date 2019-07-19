@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { DashboardService } from './dashboard.service';
+import { LocalModel } from './model/local.model';
+import { EstabelecimentoModel } from './model/estabelecimento.model';
+import { UsuarioModel } from './model/usuario.model';
+import { ProdutoModel } from './model/produto.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +13,15 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  locais: LocalModel[] = [];
+  estabelecimentos: EstabelecimentoModel[] = [];
+  usuarios: UsuarioModel[] = [];
+  produtos: ProdutoModel[] = [];
+
+  constructor(
+    private service: DashboardService) { }
+
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -66,6 +79,9 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+    this.getLocais()
+    this.getData()
+
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {
@@ -145,6 +161,28 @@ export class DashboardComponent implements OnInit {
 
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
+  }
+
+
+
+  getLocais(){
+    this.service.getEstabelecimentos().subscribe(
+      estabelecimentos => {
+        this.estabelecimentos = estabelecimentos;        
+      },
+      (erro) => {}
+    )
+  }
+
+  getData(){   
+    this.service.getUsuarioLocalProduto().subscribe(
+      responseList => {
+        this.usuarios = responseList[0]; 
+        this.locais = responseList[1]; 
+        this.produtos = responseList[2];         
+      },
+      erro => {}
+    )
   }
 
 }

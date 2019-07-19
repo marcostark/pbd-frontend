@@ -45,7 +45,7 @@ import { AuthInterceptorProvider } from './_helpers/auth.interceptor';
     RouterModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+      apiKey: 'AIzaSyAxt5tbKRFSQ0i6MnvcHqcpsybpPIe2n90'
     })
   ],
   declarations: [
