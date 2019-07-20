@@ -48,12 +48,12 @@
                     <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">person</i>                        
                         <p>
-                            <span class="d-lg-none d-md-block">Algumas Ações</span>
+                            <span class="d-lg-none d-md-block">Conta</span>
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" routerLink="/user-profile">Perfil</a>
-                        <a class="dropdown-item" href="#">Sair</a>
+                        <a class="dropdown-item" (click)="logout()">Sair</a>
                     </div>
                 </li>
                 <!-- <li class="nav-item">
