@@ -51,7 +51,7 @@ import { AuthInterceptorProvider } from './_helpers/auth.interceptor';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    ConfirmationDialogComponent,    
+    ConfirmationDialogComponent,
   ],
   entryComponents: [
     ConfirmationDialogComponent

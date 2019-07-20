@@ -4,21 +4,38 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AuthGuard } from './_guards/auth.guards';
 
 const routes: Routes =[
 
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
-
+ 
+ // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  
   {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }, 
-  {
-    path: '', component: AdminLayoutComponent, children: [{
+    canActivate: [AuthGuard]
+  }, {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+        {
       path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-  }]}
+      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule',
+      canActivate: [AuthGuard]
+  }]},
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
+
+  // {
+  //   path: '', component: AdminLayoutComponent, children: [{
+  //     path: '',
+  //     loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule',
+  //     canActivate: [AuthGuard]
+  // }]}
+
     // { path: 'dashboard',      component: DashboardComponent },
     // { path: 'user-profile',   component: UserProfileComponent },
     // { path: 'table-list',     component: TableListComponent },
