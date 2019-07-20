@@ -5,6 +5,7 @@ import { LocalModel } from './model/local.model';
 import { EstabelecimentoModel } from './model/estabelecimento.model';
 import { UsuarioModel } from './model/usuario.model';
 import { ProdutoModel } from './model/produto.model';
+import { TipoProdutoModel } from './model/tipo-produto.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ export class DashboardComponent implements OnInit {
   estabelecimentos: EstabelecimentoModel[] = [];
   usuarios: UsuarioModel[] = [];
   produtos: ProdutoModel[] = [];
+  tipos: TipoProdutoModel[] = [];
 
   constructor(
     private service: DashboardService) { }
@@ -80,6 +82,7 @@ export class DashboardComponent implements OnInit {
   };
   ngOnInit() {
     this.getLocais()
+    this.getTipoProduto();
     this.getData()
 
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
@@ -180,6 +183,15 @@ export class DashboardComponent implements OnInit {
         this.usuarios = responseList[0]; 
         this.locais = responseList[1]; 
         this.produtos = responseList[2];         
+      },
+      erro => {}
+    )
+  }
+
+  getTipoProduto(){   
+    this.service.getTipoProdutos().subscribe(
+      tipos => {
+        this.tipos = tipos
       },
       erro => {}
     )

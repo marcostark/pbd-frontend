@@ -1,4 +1,4 @@
-//const HOST = 'http://localhost:8080';
+// const HOST = 'http://localhost:8080';
 const HOST = 'http://192.168.100.8:8080';
 
 export const CCBST_INJECTABLES = [

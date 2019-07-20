@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from './model/usuario.model';
 import { EstabelecimentoModel } from './model/estabelecimento.model';
 import { ProdutoModel } from './model/produto.model';
+import { TipoProdutoModel } from './model/tipo-produto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class DashboardService {
     @Inject('USUARIO_ENDPOINT') private usuarioEndpoint: string,
     @Inject('PRODUTO_ENDPOINT') private produtoEndpoint: string,
     @Inject('ESTABELECIMENTO_ENDPOINT') private estabelecimentoEndpoint: string,
+    @Inject('TIPO_PRODUTO_ENDPOINT') private tipoProdutoEndpoint: string,
     private httpClient: HttpClient
   ) { }
 
@@ -33,6 +35,10 @@ export class DashboardService {
 
   getProdutos(): Observable<ProdutoModel[]> {
     return this.httpClient.get<ProdutoModel[]>(this.produtoEndpoint);
+  }
+
+  getTipoProdutos(): Observable<TipoProdutoModel[]> {
+    return this.httpClient.get<TipoProdutoModel[]>(this.tipoProdutoEndpoint);
   }
 
   getUsuarioLocalProduto(): Observable<any>{
