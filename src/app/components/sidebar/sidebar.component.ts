@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/services/authentication.service';
+import { UsuarioModel } from 'app/dashboard/model/usuario.model';
+import { UserService } from 'app/services/user.service';
+import { StorageService } from 'app/services/storage.service';
 
 declare const $: any;
 declare const admin = false;
@@ -12,7 +15,7 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Home',  icon: 'dashboard', class: '' },   
-    { path: '/usuario', title: 'Usuario',  icon:'people', class: '' },       
+    // { path: '/usuario', title: 'Usuario',  icon:'people', class: '' },       
     { path: '/marca', title: 'Marca',  icon:'bookmark', class: '' },
     { path: '/medida', title: 'Medida',  icon:'bubble_chart', class: '' },
     { path: '/tipo-estabelecimento', title: 'Tipo de Estabelecimento',  icon:'shopping_cart', class: '' },
@@ -37,14 +40,24 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
-  admin  = false; 
+  usuario: UsuarioModel;
+  admin: boolean; 
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private _user: UserService,
+    private storage: StorageService
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
+    let localUser = this.storage.getLocalUser()
+    if (localUser && localUser.email) {
+      this.buscaUsuarioPoremail(localUser.email);
+    }else{
+      //Acesso não autorizado! Redirecionar para a pagina de login
+      console.log("Redirecionando para a pagina de login")
+    }      
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
@@ -53,6 +66,20 @@ export class SidebarComponent implements OnInit {
       }
       return true;
   };
+
+  buscaUsuarioPoremail(email: string){   
+    this._user.buscaUsuarioPorEmail(email).subscribe(
+      usuario => {
+        this.usuario = usuario  
+        if(this.usuario.perfis[1]){
+          this.admin = true
+        }
+        console.log(this.usuario)
+      },
+      error => {}
+    )
+  }
+
 
   logout(){    
     this.authenticationService.logout();
