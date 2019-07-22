@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 import { StorageService } from 'app/services/storage.service';
 import { UsuarioModel } from 'app/dashboard/model/usuario.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-estabelecimento',
@@ -20,6 +21,7 @@ export class EstabelecimentoComponent implements OnInit {
   constructor(
     private service: EstabelecimentoService,
     public dialog: MatDialog,
+    private router: Router,
     private storage: StorageService
   ) { }
 
@@ -78,7 +80,11 @@ export class EstabelecimentoComponent implements OnInit {
         }
         console.log(this.usuario)
       },
-      error => {}
+      error => {
+        if(error.status == 403){
+          this.router.navigate(['/login']);
+        }
+      }
     )
   }
 }

@@ -44,10 +44,9 @@ export class ItemComponent implements OnInit {
   getdata(){
     this.service.getItens().subscribe(
       items => {
-        this.items = items;    
-        console.log(this.items)     
+        this.items = items;       
       },
-      (erro) => console.error(erro)
+      (erro) =>{}
     )
   }
 
@@ -57,7 +56,7 @@ export class ItemComponent implements OnInit {
         this.marcas = responseList[0]; 
         this.tipos = responseList[1]; 
       },
-      erro => console.error(erro)
+      erro =>{}
     )
   }
 
@@ -78,7 +77,7 @@ onSubmit(){
     (data: any)=> {
       this.getdata()
     },
-    (erro) => console.log(erro)
+    (erro) => {}
   );
   this.itemForm.reset();  
   // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.usuarioForm.value))      
@@ -106,7 +105,7 @@ removerItem(item){
     (data: any) => {
       this.getdata()
     },
-    (erro) => console.log(erro)
+    (erro) => {}
     );
 }
 
