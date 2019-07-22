@@ -16,6 +16,7 @@ export class LoginFormComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  hide = true;
 
   private credenciais: CredenciaisModel = new CredenciaisModel();
 

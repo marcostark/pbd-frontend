@@ -5,7 +5,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { LoginRoutingModule } from './login-routing.module';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
+  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule,MatProgressBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -22,7 +22,9 @@ import {
   MatTableModule,
   MatMenuModule,
   MatIconModule,
-  MatProgressSpinnerModule
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatButtonModule,
   ],
   declarations: [LoginFormComponent],
   exports:  [

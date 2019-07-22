@@ -182,7 +182,7 @@ export class DashboardComponent implements OnInit {
       responseList => {
         this.usuarios = responseList[0]; 
         this.locais = responseList[1]; 
-        this.produtos = responseList[2];         
+        this.produtos = responseList[2]['content'];         
       },
       erro => {}
     )

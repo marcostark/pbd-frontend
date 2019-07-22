@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule,MatProgressBarModule
 } from '@angular/material';
 import { RecuperarSenhaComponent } from './recuperar-senha.component';
 
@@ -20,7 +20,8 @@ import { RecuperarSenhaComponent } from './recuperar-senha.component';
     MatIconModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule, 
-    FormsModule 
+    FormsModule,
+    MatProgressBarModule
   ],
   declarations: [
     RecuperarSenhaComponent
