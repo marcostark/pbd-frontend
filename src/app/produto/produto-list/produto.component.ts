@@ -22,8 +22,7 @@ export class ProdutoComponent implements OnInit {
   getdata(){
     this.service.getProdutos().subscribe(
       produtos => {
-        this.produtos = produtos;    
-        console.log(this.produtos)     
+        this.produtos = produtos['content'];            
       },
       (erro) => console.error(erro)
     )
