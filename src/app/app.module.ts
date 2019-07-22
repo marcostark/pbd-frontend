@@ -27,10 +27,12 @@ import {
 import { ErrorInterceptorProvider } from './_helpers/error.interceptor';
 import { StorageService } from './services/storage.service';
 import { AuthInterceptorProvider } from './_helpers/auth.interceptor';
+import { RecuperarSenhaModule } from './recuperar-senha/recuperar-senha.module';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+    RecuperarSenhaModule,
     FormsModule,
     HttpClientModule,
     MatButtonModule,

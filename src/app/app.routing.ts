@@ -5,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthGuard } from './_guards/auth.guards';
+import { RecuperarSenhaComponent } from './recuperar-senha/recuperar-senha.component';
 
 const routes: Routes =[
 
  
- // { path: '', redirectTo: 'login', pathMatch: 'full' },
-  
+ { path: 'recuperar-senha', component: RecuperarSenhaComponent},   
   {
     path: '',
     redirectTo: 'dashboard',

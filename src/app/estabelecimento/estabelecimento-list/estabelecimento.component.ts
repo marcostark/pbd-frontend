@@ -3,6 +3,8 @@ import { EstabelecimentoModel } from 'app/dashboard/model/estabelecimento.model'
 import { EstabelecimentoService } from '../estabelecimento.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
+import { StorageService } from 'app/services/storage.service';
+import { UsuarioModel } from 'app/dashboard/model/usuario.model';
 
 @Component({
   selector: 'app-estabelecimento',
@@ -12,13 +14,22 @@ import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/conf
 export class EstabelecimentoComponent implements OnInit {
 
   estabelecimentos: EstabelecimentoModel[];
+  usuario: UsuarioModel = new UsuarioModel
 
   constructor(
     private service: EstabelecimentoService,
     public dialog: MatDialog,
+    private storage: StorageService
   ) { }
 
   ngOnInit() {
+    let localUser = this.storage.getLocalUser()
+    if (localUser && localUser.email) {
+      this.buscaUsuarioPoremail(localUser.email);
+    }else{
+      //Acesso não autorizado! Redirecionar para a pagina de login
+      console.log("Redirecionando para a pagina de login")
+    }  
     this.getData();
   }
 
@@ -55,5 +66,15 @@ export class EstabelecimentoComponent implements OnInit {
 
   editarEstabelecimento(estabelecimento){
     console.log("Editar Estabelecimento: " + estabelecimento.nome)
+  }
+
+  buscaUsuarioPoremail(email: string){   
+    this.service.buscaUsuarioPorEmail(email).subscribe(
+      usuario => {
+        this.usuario = usuario
+        console.log(this.usuario)
+      },
+      error => {}
+    )
   }
 }

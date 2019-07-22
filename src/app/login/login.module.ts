@@ -24,7 +24,7 @@ import {
   MatIconModule,
   MatProgressSpinnerModule
   ],
-  declarations: [LoginFormComponent, LoginFormComponent,],
+  declarations: [LoginFormComponent],
   exports:  [
     LoginFormComponent,
     MatToolbarModule,

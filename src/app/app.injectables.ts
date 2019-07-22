@@ -14,6 +14,7 @@ export const CCBST_INJECTABLES = [
     { provide: 'ESTABELECIMENTO_ENDPOINT', useValue: HOST + '/estabelecimentos/' },
     { provide: 'PRODUTO_ENDPOINT', useValue: HOST + '/produtos/' },
     { provide: 'USUARIO_ENDPOINT', useValue: HOST + '/usuarios/' },
+    { provide: 'RECUPERAR_SENHA_ENDPOINT', useValue: HOST + '/auth/forgot/' },
 
     { provide: 'PAGE_SIZE', useValue: '20' },
 ];
