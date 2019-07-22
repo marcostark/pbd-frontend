@@ -4,6 +4,9 @@ import { MedidaModel } from 'app/dashboard/model/medida.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TipoProdutoService } from '../tipo-produto.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { StorageService } from 'app/services/storage.service';
+import { UserService } from 'app/services/user.service';
+import { UsuarioModel } from 'app/dashboard/model/usuario.model';
 
 @Component({
   selector: 'app-tipo-produto-form',
@@ -11,7 +14,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./tipo-produto-form.component.scss']
 })
 export class TipoProdutoFormComponent implements OnInit {
-
   
   medidas: MedidaModel[];
   tipoProdutoForm: FormGroup;
@@ -24,10 +26,10 @@ export class TipoProdutoFormComponent implements OnInit {
     private _router: ActivatedRoute,
     private service: TipoProdutoService,
     private formBuilder: FormBuilder,    
-    private _routerBack: Router
+    private _routerBack: Router,
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.getData();
     this.tipoProdutoForm = this.formBuilder.group(
       {

@@ -15,6 +15,7 @@ export class EstabelecimentoComponent implements OnInit {
 
   estabelecimentos: EstabelecimentoModel[];
   usuario: UsuarioModel = new UsuarioModel
+  permissao: boolean
 
   constructor(
     private service: EstabelecimentoService,
@@ -71,7 +72,10 @@ export class EstabelecimentoComponent implements OnInit {
   buscaUsuarioPoremail(email: string){   
     this.service.buscaUsuarioPorEmail(email).subscribe(
       usuario => {
-        this.usuario = usuario
+        this.usuario = usuario  
+        if(this.usuario.perfis[1]){
+          this.permissao = true
+        }
         console.log(this.usuario)
       },
       error => {}

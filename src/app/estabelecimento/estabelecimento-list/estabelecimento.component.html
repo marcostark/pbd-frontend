@@ -1,6 +1,6 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div>
+      <div *ngIf="permissao">
           <div class="col-md-12">
                 <button 
                 mat-raised-button 
@@ -33,7 +33,7 @@
                                   <th>
                                       Tipo
                                   </th>
-                                  <th>
+                                  <th *ngIf="permissao" >
                                       Opções
                                   </th>
                               </thead>
@@ -51,7 +51,7 @@
                                       <td>
                                           {{estabelecimento.tipoEstabelecimento.nome}}
                                       </td>
-                                      <td class="td-actions text-left">
+                                      <td *ngIf="permissao" class="td-actions text-left">
                                         <button mat-raised-button type="button" (click)="editarEstabelecimento(estabelecimento)"
                                             matTooltip="Editar Estabelecimento" [matTooltipPosition]="'above'"
                                             class="btn btn-primary btn-link btn-sm btn-just-icon">

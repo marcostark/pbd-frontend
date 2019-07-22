@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div class="row">
+        <div *ngIf="permissao" class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
@@ -68,7 +68,7 @@
                                     <th>
                                         Valor
                                     </th>
-                                    <th>
+                                    <th *ngIf="permissao">
                                         Opções
                                     </th>
                                 </thead>
@@ -83,7 +83,7 @@
                                         <td>
                                             {{ medida.valor }}
                                         </td>
-                                        <td class="td-actions text-left">
+                                        <td *ngIf="permissao" class="td-actions text-left">
                                             <button mat-raised-button type="button" (click)="editarMedida(medida)"
                                                 matTooltip="Editar Medida" [matTooltipPosition]="'above'"
                                                 class="btn btn-primary btn-link btn-sm btn-just-icon">

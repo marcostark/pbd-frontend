@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
+import { UserService } from 'app/services/user.service';
+import { StorageService } from 'app/services/storage.service';
 
 @Component({
   selector: 'app-local',
@@ -19,15 +21,26 @@ export class LocalComponent implements OnInit {
   localForm: FormGroup;
   usuarios: UsuarioModel[];
   submitted = false;
+  usuario: UsuarioModel;
+  permissao: boolean
 
   constructor(
     private service: LocalService,
     private formBuilder: FormBuilder, 
     private dialog: MatDialog,
-    private _router: Router
+    private _router: Router,
+    private _user: UserService,
+    private storage: StorageService
   ) {}
 
   ngOnInit() {
+    let localUser = this.storage.getLocalUser()
+    if (localUser && localUser.email) {
+      this.buscaUsuarioPoremail(localUser.email);
+    }else{
+      //Acesso não autorizado! Redirecionar para a pagina de login
+      console.log("Redirecionando para a pagina de login")
+    }  
     this.getData()
     this.getUsuarios()
     this.localForm = this.formBuilder.group(
@@ -36,6 +49,19 @@ export class LocalComponent implements OnInit {
         nome: ['', Validators.required],
       }
     );
+  }
+
+  buscaUsuarioPoremail(email: string){   
+    this._user.buscaUsuarioPorEmail(email).subscribe(
+      usuario => {
+        this.usuario = usuario  
+        if(this.usuario.perfis[1]){
+          this.permissao = true
+        }
+        console.log(this.usuario)
+      },
+      error => {}
+    )
   }
 
   getData(){

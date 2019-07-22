@@ -6,5 +6,6 @@ export class UsuarioModel {
     cpf: string;
     senha: string;
     telefone1: string;
+    perfis: String[]
     token: string;
 }

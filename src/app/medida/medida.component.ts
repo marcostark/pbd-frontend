@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { UsuarioModel } from 'app/dashboard/model/usuario.model';
+import { UserService } from 'app/services/user.service';
+import { StorageService } from 'app/services/storage.service';
 
 @Component({
   selector: 'app-medida',
@@ -15,6 +18,8 @@ export class MedidaComponent implements OnInit {
 
   private _medida: MedidaModel = new MedidaModel();
   public medidaForm: FormGroup;
+  usuario: UsuarioModel;
+  permissao: boolean
 
   medidas: MedidaModel[];
 
@@ -23,15 +28,37 @@ export class MedidaComponent implements OnInit {
     private _fb: FormBuilder,
     public dialog: MatDialog,
     private _router: Router,
+    private _user: UserService,
+    private storage: StorageService
   ) { }
 
   ngOnInit() {
+    let localUser = this.storage.getLocalUser()
+    if (localUser && localUser.email) {
+      this.buscaUsuarioPoremail(localUser.email);
+    }else{
+      //Acesso não autorizado! Redirecionar para a pagina de login
+      console.log("Redirecionando para a pagina de login")
+    }  
     this.getData()
     this.medidaForm = this._fb.group(
       {
         unidade: ['', Validators.required],
         valor: ['', Validators.required],
       }
+    )
+  }
+
+  buscaUsuarioPoremail(email: string){   
+    this._user.buscaUsuarioPorEmail(email).subscribe(
+      usuario => {
+        this.usuario = usuario  
+        if(this.usuario.perfis[1]){
+          this.permissao = true
+        }
+        console.log(this.usuario)
+      },
+      error => {}
     )
   }
 

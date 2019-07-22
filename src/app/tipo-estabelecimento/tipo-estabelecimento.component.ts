@@ -4,6 +4,9 @@ import { TipoEstabelecimentoModel } from 'app/dashboard/model/tipo-estabelecimen
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { UsuarioModel } from 'app/dashboard/model/usuario.model';
+import { UserService } from 'app/services/user.service';
+import { StorageService } from 'app/services/storage.service';
 
 @Component({
   selector: 'app-tipo-estabelecimento',
@@ -15,20 +18,44 @@ export class TipoEstabelecimentoComponent implements OnInit {
   private _tipoEstabelecimento: TipoEstabelecimentoModel = new TipoEstabelecimentoModel();
   tiposEstabelecimentos: TipoEstabelecimentoModel[];
   public tipoEstabelecimentoForm: FormGroup;
+  usuario: UsuarioModel;
+  permissao: boolean
 
   constructor(
     private service: TipoEstabelecimentoService,
     private _fb: FormBuilder,
     public dialog: MatDialog,   
-    private _router: Router 
+    private _router: Router,
+    private _user: UserService,
+    private storage: StorageService
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
+    let localUser = this.storage.getLocalUser()
+    if (localUser && localUser.email) {
+      this.buscaUsuarioPoremail(localUser.email);
+    }else{
+      //Acesso não autorizado! Redirecionar para a pagina de login
+      console.log("Redirecionando para a pagina de login")
+    }    
     this.getData()
     this.tipoEstabelecimentoForm = this._fb.group(
       {
         nome:['', Validators.required],
       }
+    )
+  }
+
+  buscaUsuarioPoremail(email: string){   
+    this._user.buscaUsuarioPorEmail(email).subscribe(
+      usuario => {
+        this.usuario = usuario  
+        if(this.usuario.perfis[1]){
+          this.permissao = true
+        }
+        console.log(this.usuario)
+      },
+      error => {}
     )
   }
 

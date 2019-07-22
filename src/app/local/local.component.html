@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class="container-fluid">
-            <div class="row">
+            <div *ngIf="permissao" class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-danger">
@@ -63,15 +63,10 @@
                                     <th>
                                         Nome
                                     </th>
-                                    <th>
+                                    <th *ngIf="permissao">
                                         Opções
                                     </th>
-                                    <!-- <th>
-                                      City
-                                  </th>
-                                  <th>
-                                      Salary
-                                  </th> -->
+                                    
                                 </thead>
                                 <tbody>
                                     <tr *ngFor= "let local of locais">
@@ -87,7 +82,7 @@
                                         <!-- <td>
                                           Oud-Turnhout
                                       </td> -->
-                                        <td class="td-actions text-left">
+                                        <td *ngIf="permissao" class="td-actions text-left">
                                             <button mat-raised-button type="button" (click)="editarLocal(local)"
                                                 matTooltip="Editar Local" [matTooltipPosition]="'above'"
                                                 class="btn btn-primary btn-link btn-sm btn-just-icon">
