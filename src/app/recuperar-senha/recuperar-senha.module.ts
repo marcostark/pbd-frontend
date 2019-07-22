@@ -18,7 +18,9 @@ import { RecuperarSenhaComponent } from './recuperar-senha.component';
     MatTableModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule, 
+    FormsModule 
   ],
   declarations: [
     RecuperarSenhaComponent
